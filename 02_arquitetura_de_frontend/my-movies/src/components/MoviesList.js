@@ -5,7 +5,7 @@ export const MoviesList = ({movies}) => {
     <section>
       <ul>
         {movies.map(movie => {
-          return <MovieItem key={movie.id} title={movie.title} />
+          return <MovieItem key={movie.id} movie={movie}  />
         })}
       </ul>
     </section>
