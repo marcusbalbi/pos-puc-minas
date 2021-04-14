@@ -1,14 +1,31 @@
 <template>
   <section>
-    <h1>Marcus Balbi</h1>
+    <h1>{{ completeName }}</h1>
     <article>
-      Father and Passionate about software development, I like to think of myself as a "problem-solver", because I love challenges!
+      {{ profile.bio }}
     </article>
   </section>
 </template>
 <script>
 export default {
-  name: "ProfilePicture"
+  name: "ProfilePicture",
+  props: {
+    profile: {
+      type: Object,
+      default: () => {
+        return {
+          login: "",
+          name: "",
+          bio: ""
+        }
+      }
+    }
+  },
+  computed: {
+    completeName() {
+      return this.profile.login
+    }
+  }
 };
 </script>
 <style scoped>

@@ -3,26 +3,39 @@
     <Menu />
     <div class="header-content">
       <ProfilePicture class="picture" />
-      <ProfileDescription class="description" />
+      <ProfileDescription :profile="profile" class="description" />
     </div>
   </header>
 </template>
 <script>
-import Menu from "./Menu"
-import ProfilePicture from "./ProfilePicture"
-import ProfileDescription from "./ProfileDescription"
+import Menu from "./Menu";
+import ProfilePicture from "./ProfilePicture";
+import ProfileDescription from "./ProfileDescription";
+import { GithubService } from "../api/GithubService";
 export default {
   name: "Header",
   components: {
     Menu,
     ProfilePicture,
-    ProfileDescription
-  }
+    ProfileDescription,
+  },
+  data() {
+    return {
+      profile: {},
+    };
+  },
+  mounted() {
+    const githubService = new GithubService("marcusbalbi");
+
+    githubService.getUserInfo().then(({ data }) => {
+      this.profile = Object.assign({}, data);
+    });
+  },
 };
 </script>
 <style scoped>
 header {
-  background: #2F558D;
+  background: #2f558d;
   height: 300px;
   display: flex;
   flex-direction: column;
