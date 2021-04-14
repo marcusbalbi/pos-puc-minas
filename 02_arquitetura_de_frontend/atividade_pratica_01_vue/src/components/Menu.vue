@@ -1,9 +1,9 @@
 <template>
   <nav>
     <ul>
-      <li>Perfil</li>
-      <li>Repositorios</li>
-      <li>Estrelas</li>
+      <li><router-link to="/">Perfil</router-link></li>
+      <li><router-link to="/repositories">Repositorios</router-link></li>
+      <li><router-link to="/stars">Estrelas</router-link></li>
     </ul>
   </nav>
 </template>
@@ -29,4 +29,13 @@ nav > ul > li {
   font-size: 1.2rem;
   margin-left: 0.8rem;
 }
+a:link, a:visited, a:active {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+
+a:hover {
+  color: #C0C0C0;
+}
+
 </style>

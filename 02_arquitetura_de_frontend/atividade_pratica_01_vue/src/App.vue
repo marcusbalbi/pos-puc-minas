@@ -1,6 +1,8 @@
 <template>
-  <Header />
-  <router-view />
+  <div class="root">
+    <Header />
+    <router-view class="content" />
+  </div>
 </template>
 
 <script>
@@ -12,6 +14,3 @@ export default {
   }
 }
 </script>
-
-<style>
-</style>
