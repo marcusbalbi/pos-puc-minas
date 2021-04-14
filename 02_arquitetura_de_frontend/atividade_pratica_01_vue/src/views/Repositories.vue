@@ -2,17 +2,26 @@
   <section>
     <h1>Repositorios</h1>
     <ul>
-      <li><a href="https://github.com/marcusbalbi/pos-puc-minas">https://github.com/marcusbalbi/pos-puc-minas</a></li>
-      <li><a href="https://github.com/marcusbalbi/code-micro-auth">https://github.com/marcusbalbi/code-micro-auth</a></li>
-      <li><a href="https://github.com/marcusbalbi/code-education-desafio-docker">https://github.com/marcusbalbi/code-education-desafio-docker</a></li>
-      <li><a href="https://github.com/marcusbalbi/code-micro-videos">https://github.com/marcusbalbi/code-micro-videos</a></li>
-      <li><a href="https://github.com/marcusbalbi/alura-cursos">https://github.com/marcusbalbi/alura-cursos</a></li>
+      <li v-for="repo in repos" :key="repo.node_id" ><a :href="repo.html_url" target="_blank" >{{ repo.name }}</a></li>
     </ul>
   </section>
 </template>
 <script>
+import { GithubService } from '../api/GithubService';
 export default {
-  name: "Repositories"
+  name: "Repositories",
+    data () {
+    return {
+      repos: {
+      }
+    }
+  },
+  async mounted() {
+    const githubService = new GithubService();
+
+    const {data} = await githubService.getUserRepositories();
+    this.repos = {...data}
+  },
 }
 </script>
 <style scoped>

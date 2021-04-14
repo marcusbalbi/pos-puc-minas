@@ -1,9 +1,9 @@
 import axios from "axios";
 
 export class GithubService {
-  constructor(username) {
+  constructor() {
     this._baseUrl = "https://api.github.com";
-    this._username = username;
+    this._username = "marcusbalbi";
     this._http = axios.create({
       baseURL: this._baseUrl
     })
@@ -13,7 +13,7 @@ export class GithubService {
     return this._http.get(`users/${this._username}`);
   }
 
-  getUserRepositories() {
-    return this._http.get(`users/${this._username}`);
+  getUserRepositories(perPage = 15) {
+    return this._http.get(`users/${this._username}/repos?per_page=${perPage}`);
   }
 }

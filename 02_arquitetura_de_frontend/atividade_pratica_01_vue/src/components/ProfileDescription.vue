@@ -23,7 +23,7 @@ export default {
   },
   computed: {
     completeName() {
-      return this.profile.login
+      return this.profile.name
     }
   }
 };

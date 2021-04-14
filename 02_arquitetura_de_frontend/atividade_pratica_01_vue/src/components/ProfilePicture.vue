@@ -1,11 +1,16 @@
 <template>
   <section>
-    <img src="https://avatars.githubusercontent.com/u/1749375?v=4" />
+    <img :src="avatar" />
   </section>
 </template>
 <script>
 export default {
-  name: "ProfilePicture"
+  name: "ProfilePicture",
+  props: {
+    avatar: {
+      type: String
+    }
+  }
 };
 </script>
 <style scoped>

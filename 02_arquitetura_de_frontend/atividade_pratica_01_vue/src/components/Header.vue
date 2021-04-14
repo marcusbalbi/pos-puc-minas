@@ -2,7 +2,7 @@
   <header>
     <Menu />
     <div class="header-content">
-      <ProfilePicture class="picture" />
+      <ProfilePicture :avatar="profile.avatar_url" class="picture" />
       <ProfileDescription :profile="profile" class="description" />
     </div>
   </header>
@@ -24,12 +24,11 @@ export default {
       profile: {},
     };
   },
-  mounted() {
-    const githubService = new GithubService("marcusbalbi");
+  async mounted() {
+    const githubService = new GithubService();
 
-    githubService.getUserInfo().then(({ data }) => {
-      this.profile = Object.assign({}, data);
-    });
+    const {data} = await githubService.getUserInfo();
+    this.profile = {...data}
   },
 };
 </script>
