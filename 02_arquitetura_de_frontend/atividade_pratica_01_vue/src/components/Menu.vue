@@ -1,8 +1,8 @@
 <template>
   <nav>
     <ul>
+      <li>Perfil</li>
       <li>Repositorios</li>
-      <li>Sobre</li>
       <li>Estrelas</li>
     </ul>
   </nav>
