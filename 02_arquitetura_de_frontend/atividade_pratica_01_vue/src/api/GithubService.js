@@ -16,4 +16,7 @@ export class GithubService {
   getUserRepositories(perPage = 15) {
     return this._http.get(`users/${this._username}/repos?per_page=${perPage}`);
   }
+  getUserFollowers(perPage = 15) {
+    return this._http.get(`users/${this._username}/followers?per_page=${perPage}`);
+  }
 }

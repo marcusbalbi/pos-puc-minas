@@ -3,7 +3,7 @@
     <ul>
       <li><router-link to="/">Perfil</router-link></li>
       <li><router-link to="/repositories">Repositorios</router-link></li>
-      <li><router-link to="/stars">Estrelas</router-link></li>
+      <li><router-link to="/followers">Seguidores</router-link></li>
     </ul>
   </nav>
 </template>

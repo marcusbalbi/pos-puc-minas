@@ -1,7 +1,7 @@
 import { createWebHistory, createRouter } from "vue-router";
 import Home from "@/views/Home.vue";
 import Repositories from "@/views/Repositories.vue";
-import Stars from "@/views/Stars.vue";
+import Followers from "@/views/Followers.vue";
 
 const routes = [
   {
@@ -15,9 +15,9 @@ const routes = [
     component: Repositories,
   },
   {
-    path: "/stars",
-    name: "Estrelas",
-    component: Stars,
+    path: "/followers",
+    name: "Followers",
+    component: Followers,
   },
 ];
 
