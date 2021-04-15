@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h1>Repositorios</h1>
+    <h1>Repositorios </h1>
     <ul>
       <li v-for="repo in repos" :key="repo.node_id" ><a :href="repo.html_url" target="_blank" >{{ repo.name }}</a></li>
     </ul>
