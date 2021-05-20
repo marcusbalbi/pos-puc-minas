@@ -1,11 +1,13 @@
 const express = require("express");
 const axios = require("axios");
 let count = 0;
-module.exports = (port, supplierURL) => {
+module.exports = (port, {supplierURL, openCircuitCount, closeCircuitCount}) => {
   const app = express();
+  openCircuitCount = openCircuitCount || 10
+  closeCircuitCount = closeCircuitCount || 15;
   app.get("/resource", async (req, res) => {
-    if (count >= 10) {
-      if (count >= 100) {
+    if (count >= openCircuitCount) {
+      if (count >= closeCircuitCount) {
         count = 0;
       }
       count++;
@@ -18,7 +20,9 @@ module.exports = (port, supplierURL) => {
           res.status(200).json(data);
         })
         .catch((e) => {
-          res.status(200).json({ message: "Falha na Comunicação com Supplier" + e.message });
+          res
+            .status(200)
+            .json({ message: "Falha na Comunicação com Supplier:" + e.message });
         });
     }
   });
