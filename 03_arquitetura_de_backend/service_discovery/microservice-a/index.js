@@ -1,11 +1,11 @@
 const express = require("express");
 const Eureka = require("eureka-js-client").Eureka;
-
+const axios = require("axios");
 
 // example configuration
 const client = new Eureka({
   instance: {
-    app: 'microservice1',
+    app: 'microserviceA',
     hostName: 'localhost',
     ipAddr: '127.0.0.1',
     statusPageUrl: 'http://localhost:3000/',
@@ -32,7 +32,14 @@ client.start();
 const app = express();
 
 app.get("/", (req, res) => {
-  res.status(200).json({ message: "Bem vindo!" });
+  res.status(200).json({ message: "Welcome to Microservice A" });
+});
+
+app.get("/microb", (req, res) => {
+  const microBInfo = client.getInstancesByAppId("microserviceB");
+  axios.get(microBInfo[0].vipAddress).then(({data}) => {
+    res.status(200).json({ content: data, microbinfo: microBInfo });
+  }).catch(console.log);
 });
 
 app.listen(3000, () => {

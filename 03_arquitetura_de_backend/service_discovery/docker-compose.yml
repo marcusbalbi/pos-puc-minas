@@ -4,7 +4,6 @@ services:
   eureka:
     image: springcloud/eureka:latest
     ports:
-      - 8080:8080
       - 8761:8761
   microservicea:
     build:
@@ -14,3 +13,11 @@ services:
       - ./microservice-a:/var/www/app
     ports:
       - 3000:3000
+  microserviceb:
+    build:
+      context: .
+      dockerfile: microserviceb.dockerfile
+    volumes:
+      - ./microservice-b:/var/www/app
+    ports:
+      - 4000:4000
