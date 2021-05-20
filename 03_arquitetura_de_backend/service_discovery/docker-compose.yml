@@ -1,0 +1,16 @@
+version: "3.7"
+
+services:
+  eureka:
+    image: springcloud/eureka:latest
+    ports:
+      - 8080:8080
+      - 8761:8761
+  microservicea:
+    build:
+      context: .
+      dockerfile: microservicea.dockerfile
+    volumes:
+      - ./microservice-a:/var/www/app
+    ports:
+      - 3000:3000
