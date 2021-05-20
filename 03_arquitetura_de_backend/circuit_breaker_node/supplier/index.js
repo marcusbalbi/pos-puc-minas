@@ -1,10 +1,10 @@
 const express = require("express");
-module.exports = () => {
+module.exports = (port) => {
   const app = express();
   app.get("/resource", (req, res) => {
     res.json({ message: "Supplier response ok!" });
   });
-  app.listen(3000, () => {
-    console.log("Supplier Rodando na porta 3000");
+  return app.listen(port, () => {
+    console.log("Supplier Rodando na porta " + port);
   });
 };

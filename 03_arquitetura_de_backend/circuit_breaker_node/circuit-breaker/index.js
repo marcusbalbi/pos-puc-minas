@@ -1,15 +1,28 @@
 const express = require("express");
 const axios = require("axios");
-
-const supplierURL = "http://localhost:3000";
-module.exports = () => {
+let count = 0;
+module.exports = (port, supplierURL) => {
   const app = express();
   app.get("/resource", async (req, res) => {
-    const { data } = await axios.get(`${supplierURL}/resource`);
-
-    res.json(data);
+    if (count >= 10) {
+      if (count >= 100) {
+        count = 0;
+      }
+      count++;
+      return res.status(200).json({ message: "Circuit Open!", count });
+    } else {
+      axios
+        .get(`${supplierURL}/resource`)
+        .then(({ data }) => {
+          count++;
+          res.status(200).json(data);
+        })
+        .catch((e) => {
+          res.status(200).json({ message: "Falha na Comunicação com Supplier" + e.message });
+        });
+    }
   });
-  app.listen(3001, () => {
-    console.log("Circuit Breaker Rodando na porta 3001");
+  app.listen(port, () => {
+    console.log("Circuit Breaker Rodando na porta " + port);
   });
 };
