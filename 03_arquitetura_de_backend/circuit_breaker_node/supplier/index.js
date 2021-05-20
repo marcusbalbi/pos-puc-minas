@@ -5,6 +5,6 @@ module.exports = () => {
     res.json({ message: "Supplier response ok!" });
   });
   app.listen(3000, () => {
-    console.log("Supplier Rorando na porta 3000");
+    console.log("Supplier Rodando na porta 3000");
   });
 };
