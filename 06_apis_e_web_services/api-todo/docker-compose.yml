@@ -1,0 +1,20 @@
+version: "3.7"
+services:
+  app:
+    build:
+      dockerfile: ./.docker/app.dockerfile
+      context: .
+    entrypoint: ./.docker/entrypoint.sh
+    container_name: api-todo-app
+    networks:
+      - api_todo_example_network
+    ports:
+      - "$COMPOSER_PORT:$PORT"
+    env_file:
+      - ./.env
+    volumes:
+      - "./:/var/www/app"
+
+networks:
+  api_todo_example_network:
+    driver: bridge
