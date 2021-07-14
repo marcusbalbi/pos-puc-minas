@@ -9,11 +9,41 @@ services:
     networks:
       - api_todo_example_network
     ports:
-      - "$COMPOSER_PORT:$PORT"
+      - "$COMPOSER_APP_PORT:$APP_PORT"
     env_file:
       - ./.env
     volumes:
       - "./:/var/www/app"
+
+  mongodb:
+    image: mongo:4.4.4
+    volumes:
+      - ./.docker/dbdata:/data/db
+      - ./.docker/mongo:/docker-entrypoint-initdb.d
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+      - MONGO_INITDB_DATABASE=todos
+    networks:
+      - api_todo_example_network
+
+  mongo-express:
+    image: mongo-express
+    restart: unless-stopped
+    ports:
+      - "$COMPOSER_MONGO_EXPRESS_PORT:8081"
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+      - ME_CONFIG_MONGODB_AUTH_USERNAME=root
+      - ME_CONFIG_MONGODB_AUTH_PASSWORD=root
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=root
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=root
+    networks:
+      - api_todo_example_network
+    depends_on:
+      - mongodb
+
+
 
 networks:
   api_todo_example_network:
