@@ -1,4 +1,5 @@
-const Schema = require("mongoose").Schema;
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const todoSchema = Schema({
   title: {
@@ -19,4 +20,4 @@ const todoSchema = Schema({
   },
 });
 
-module.exports = mongoose.Model("todos", todoSchema);
+module.exports = mongoose.model("todos", todoSchema);

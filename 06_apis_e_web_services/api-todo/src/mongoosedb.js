@@ -3,8 +3,9 @@ const mongoose = require("mongoose");
 const database = {
   init () {
     mongoose
-      .connect("mongodb://mongodb:27017/todos", {
+      .connect("mongodb://root:secret@mongodb:27017", {
         useNewUrlParser: true,
+        dbName: "todos"
       })
       .then(() => {
         console.log("Banco conectado com sucesso");
