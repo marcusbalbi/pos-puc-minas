@@ -17,13 +17,12 @@ services:
 
   mongodb:
     image: mongo:4.4.4
+    restart: always
     volumes:
       - ./.docker/dbdata:/data/db
-      - ./.docker/mongo:/docker-entrypoint-initdb.d
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=root
-      - MONGO_INITDB_DATABASE=todos
+      - MONGO_INITDB_ROOT_PASSWORD=secret
     networks:
       - api_todo_example_network
 
@@ -35,9 +34,9 @@ services:
     environment:
       - ME_CONFIG_MONGODB_SERVER=mongodb
       - ME_CONFIG_MONGODB_AUTH_USERNAME=root
-      - ME_CONFIG_MONGODB_AUTH_PASSWORD=root
+      - ME_CONFIG_MONGODB_AUTH_PASSWORD=secret
       - ME_CONFIG_MONGODB_ADMINUSERNAME=root
-      - ME_CONFIG_MONGODB_ADMINPASSWORD=root
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=secret
     networks:
       - api_todo_example_network
     depends_on:
