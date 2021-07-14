@@ -34,8 +34,22 @@ const TodoController = {
       res.status(500).json({ message: error.message });
     }
   },
-  update: (req, res) => {},
-  delete: (req, res) => {},
+  update: async (req, res) => {
+    try {
+      const todo = await TodoService.update(req.params.id, req.body);
+      res.status(200).json(todo);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  },
+  delete: async (req, res) => {
+    try {
+      const todo = await TodoService.remove(req.params.id);
+      res.status(200).json({ message: "Todo Removed!" });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  },
 };
 
 module.exports = TodoController;
