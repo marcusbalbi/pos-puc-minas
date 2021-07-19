@@ -6,6 +6,8 @@ const app = express();
 
 const wss = new ws.Server({ port: 9099 });
 
+app.use("/", express.static("./public"))
+
 wss.on("connection", (ws) => {
   console.log("Websocket opened on 9099")
   ws.on("message", (data) => {
