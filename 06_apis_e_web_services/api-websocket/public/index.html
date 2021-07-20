@@ -1,13 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WebSocket Example</title>
-</head>
-<body>
-  
-  <script src="app.js" ></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+      integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>WebSocket Example</title>
+  </head>
+  <body class="ui container segment">
+    <h1>Exemplo WebSocket</h1>
+    <!-- <div class="ui icon message">
+      <i class="notched circle loading icon"></i>
+      <div class="content">
+        <div class="header">Aguarde um momento</div>
+        <p>Conectando ao Websocket...</p>
+      </div>
+    </div> -->
+    <div class="ui two column divided grid">
+      <form class="ui form column">
+        <div class="field">
+          <label>Mensagem</label>
+          <textarea type="text" id="message" placeholder="Mensagem"></textarea>
+        </div>
+        <button class="ui button primary" type="submit">Enviar!</button>
+        <button class="ui button red" type="submit">Fechar Conexão</button>
+      </form>
+      <div class="ui column">
+        <h2>Histórico</h2>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
 </html>
