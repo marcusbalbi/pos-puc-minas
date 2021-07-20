@@ -28,11 +28,12 @@
           <label>Mensagem</label>
           <textarea type="text" id="message" placeholder="Mensagem"></textarea>
         </div>
-        <button id="send" class="ui button primary" type="submit">Enviar!</button>
-        <button id="close" class="ui button red" type="submit">Fechar Conexão</button>
+        <button id="send" class="ui button primary disabled" type="submit">Enviar!</button>
+        <button id="close" class="ui button red disabled" type="submit">Fechar Conexão</button>
       </form>
       <div class="ui column">
         <h2>Histórico</h2>
+        <div id="reicevedMessages" class="ui relaxed divided list" ></div>
       </div>
     </div>
     <script src="app.js"></script>
